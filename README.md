@@ -39,6 +39,15 @@ Trabajo practico 0 - Taller I
 
 - e) **Investigar la existencia de los archivos estándar: STDIN, STDOUT, STDERR. Explicar brevemente su uso y cómo redirigirlos en caso de ser necesario (caracteres > y <) y como conectar la salida estándar de un proceso a la entrada estándar de otro con un pipe (carácter | ).**
 
+  - STDIN: Entrada estandar, consiste en los datos que son enviados al programa. El descriptor asociado al stdin es el 0.
+  - STDOUT: Salida estandar, es la manera por la cual el programa devuelve los datos luego de su ejecucion. El descriptor de archivo que le corresponde es el 1.
+  - STDERR: Error estandar, es el canal por el cual se envia un mensaje de error en caso de que la ejecucion falle
+
+
+
+
+​	La salida estandar de un programa se puede conectar con la entrada estandar de otro progama utilizando un pipe. El segundo proceso lee directamente los resultados del proceso anterior. La forma de utilizarlo es la siguiente `$ prog1 | prog2 `. Se ejecutara el prog1 y su salida estandar se conecta con la entrada estandar del prog2.
+
 
 
 ## Paso 1 
@@ -85,7 +94,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - c) **¿El sistema reportó algún WARNING? ¿Por qué?**
 
-  ​	El sistema no reporto ningun warning ya que al compilar se utilizo el flag -Werror el cual genera que los warning sean tradatos como errores.
+  ​	El sistema no reporto ningun warning ya que al compilar se utilizo el flag -Werror el cual genera que los warning (los hay en este caso) sean tradatos como errores.
 
   ​	
 
@@ -179,7 +188,7 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
   ![](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/ArchivoBinario.png)
 
-  Como se puede apreciar en la imagen el ultimo caracter del archivo `input_single_word.txt` es una letra `d`.
+  Como se puede apreciar en la imagen el ultimo caracter del archivo `input_single_word.txt` es una letra `d`y no un caracter especial.
 
 - d)  **Captura de pantalla con el resultado de la ejecución con gdb. Explique brevemente los comandos utilizados en gdb. ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++;?**
 
@@ -189,3 +198,26 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
   ![gdb3](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb3.png)
 
+El gdb no se detuvo en la linea 45 por lo explicado en b) y c), como la palabra no finaliza con alguno de los caracteres especiales el `if(strchr(delim_words, c) != NULL)` siempre da false y provoca que el programa nunca entre a la linea 45. Como resultado de ello, nunca se incrementa el contador de palabras y el retorno del programa es cero.
+
+- **Comandos:**  
+  - Info Functions: Si no recibe parametros lista todas las funciones de todos los modulos cargados.
+  - List <parametro>: El parametro puede ser una linea o una funcion y se imprimira en pantalla 10 lineas de codigo centradas en la linea del parametro. Si se usa sin parametro luego de haber aplicado un list previamente, imprimira 10 lineas mas desde la ultima del list anterior. 
+  - Break: Sirve para ubicar break points, estos son puntos de corte para que el programa frene su ejecucion al llegar a uno de ellos. Si ubico un breakpoint y el programa nunca para puedo asegurar que el programa no pasa por esa linea.
+  - Run: Corre el programa.
+
+
+
+
+
+## Paso 6
+
+- a) **Describa en breves palabras las correcciones realizadas respecto de la versión anterior.**
+
+  Ejecutando el comando diff vemos que en el `paso6_main.c` cambia la definicion de error de -1 a 1. En el archivo `paso6_wordscounter.c` los caracteres que delimitan las palabras ahora estan en un define, y se modifica la funcion `wordscounter_next_state` para evitar los problemas del paso5.
+
+- b) **Captura de pantalla mostrando todas las entregas realizadas, tanto exitosas como fallidas.**
+
+- c) **Captura de pantalla mostrando la ejecución de la prueba ‘Single Word’ de forma local con las distintas variantes indicadas.**
+
+  ![CompilacionLocal](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso6/CompilacionLocal.png)
