@@ -7,7 +7,7 @@ Trabajo practico 0 - Taller I
 
 - a) Captura de pantalla de la ejecucion del aplicativo
 
-  ​	![Pasp0Ejecucion](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso0/Pasp0Ejecucion.png)
+  ​	![Pasp0Ejecucion](../Imagenes Informe/Paso0/Pasp0Ejecucion.png)
 
   ![Paso0Valgrind](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso0/Paso0Valgrind.png)
 
