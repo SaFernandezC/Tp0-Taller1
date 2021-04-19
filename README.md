@@ -1,11 +1,17 @@
-# Tp0
-Trabajo practico 0 - Taller I
+# Trabajo practico 0 - Taller de programacion I
+Alumno: Fernandez Caruso Santiago Pablo
+
+Padron: 105267
+
+Repositorio GitHub: https://github.com/SaFernandezC/Tp0
+
+El presente trabajo consta de seguir una serie de pasos con el fin de familiarizarse con el sistema de entregas de la catedra, preparar el entorno de trabajo, repasar conceptos sobre el lenguaje C ya estudiados en otras materias y la confeccion de un informe.
 
 
 
 ## Parte 0
 
-- a) Captura de pantalla de la ejecucion del aplicativo
+- a) **Captura de pantalla de la ejecucion del aplicativo**
 
   ​	![Pasp0Ejecucion](img/Paso0/Pasp0Ejecucion.png)
 
@@ -112,7 +118,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - c) **Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.**
 
-  ![ejecutable](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso2/ejecutable.png)
+  ![ejecutable](img/Paso2/ejecutable.png)
 
 Todos los errores se tratan de errores en la compilacion (con el flag -c nunca se linkea, luego de compilar se frena el proceso). Los errores se producen ya que falta  incluir la biblioteca estandar (se puede incluir en el paso2_wordcounter.h o en el paso2_wordcounter.c y hacer el include de paso2_wordcounter.h luego de declarar las demas bibliotcas) que es la que contiene el tipo de dato size_t (sercom recomienda stddef pero con la estandar alcanza). Luego, tampoco puede resolver el malloc ya que no esta incluida la biblioteca <stdlib> la cual lo contiene, esto genera que no se pueda compilar ya que el compilador no puede verificar que esta funcion existe (no hay una definicion explicita). 
 
@@ -128,7 +134,7 @@ Todos los errores se tratan de errores en la compilacion (con el flag -c nunca s
 
 - b) **Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.** 
 
-![Compilacion](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso3/Compilacion.png)
+![Compilacion](img/Paso3/Compilacion.png)
 
 En este caso el error proviene del linker. El compilador tiene todo lo necesario para generar el codigo objeto pero para armar el ejecutable el linker debe indicar la posicion de cada funcion ya que de lo contrario el ejecutable no podra invocar a una funcion que no sabe donde se ecuentra. La funcion wordscounter_destroy esta declarada pero no esta implementada en ninguna parte.
 
@@ -144,9 +150,9 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - b) **Captura de pantalla del resultado de ejecución con Valgrind de la prueba ‘TDA’. Describir los errores reportados por Valgrind.**
 
-  ![ValgrindTda1](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso4/ValgrindTda1.png)
+  ![ValgrindTda1](img/Paso4/ValgrindTda1.png)
 
-  ![ValgrindTda2](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso4/ValgrindTda2.png)
+  ![ValgrindTda2](img/Paso4/ValgrindTda2.png)
 
   Con el resultado de ejecucion de Valgrind vemos que al final la misma quedaron abiertos 5 archivos, siendo uno de ellos el `input_tda.txt` que es el que indicamos por parametros a la hora de ejecutar (los demas corresponden al stdin, stdout, stderr, y el log de valgrind, los cuales se pueden "ignorar").
 
@@ -154,7 +160,7 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - c) **Captura de pantalla del resultado de ejecución con Valgrind de la prueba ‘Long Filename’. Describir los errores reportados por Valgrind.**
 
-  ![NombreLargoValgrind](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso4/NombreLargoValgrind.png)
+  ![NombreLargoValgrind](img/Paso4/NombreLargoValgrind.png)
 
   En el caso de un input file con un nombre largo vemos que no hay perdidas de memoria ya que el programa corta su ejecucion en la linea 13 del main debido a un buffer overflow. El buffer overflow se genera debido a que la variable filepath tiene memoria reservada para 30 caracteres y se intentan guardar mas de 30 cuando se quiere copiar el contenido de argv[1] en dicha variable en el memcpy.
 
@@ -178,7 +184,7 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
   La informacion que brinda SERCOM para indentificar que hay errores es que el retorno del programa no coincide con la salida esperada que deberia tener.
 
-  ![Punto5b](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/Punto5b.png)
+  ![Punto5b](img/Paso5/Punto5b.png)
 
   En el caso de `single_word` el error se da ya que el archivo tiene una sola palabra y no finaliza con ninguno de los caracteres especiales que delimitan el fin de la misma, eso genera que nunca se le sume uno a la cantidad de palabras leidas y retorna 0.
 
@@ -186,17 +192,17 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - c) **Captura de pantalla de la ejecución del comando hexdump. ¿Cuál es el último carácter del archivo input_single_word.txt?**
 
-  ![](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/ArchivoBinario.png)
+  ![](img/Paso5/ArchivoBinario.png)
 
   Como se puede apreciar en la imagen el ultimo caracter del archivo `input_single_word.txt` es una letra `d`y no un caracter especial.
 
 - d)  **Captura de pantalla con el resultado de la ejecución con gdb. Explique brevemente los comandos utilizados en gdb. ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++;?**
 
-  ![](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb1.png)
+  ![](img/Paso5/gdb1.png)
 
-  ![gdb2](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb2.png)
+  ![gdb2](img/Paso5/gdb2.png)
 
-  ![gdb3](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb3.png)
+  ![gdb3](img/Paso5/gdb3.png)
 
 El gdb no se detuvo en la linea 45 por lo explicado en b) y c), como la palabra no finaliza con alguno de los caracteres especiales el `if(strchr(delim_words, c) != NULL)` siempre da false y provoca que el programa nunca entre a la linea 45. Como resultado de ello, nunca se incrementa el contador de palabras y el retorno del programa es cero.
 
@@ -220,4 +226,4 @@ El gdb no se detuvo en la linea 45 por lo explicado en b) y c), como la palabra 
 
 - c) **Captura de pantalla mostrando la ejecución de la prueba ‘Single Word’ de forma local con las distintas variantes indicadas.**
 
-  ![CompilacionLocal](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso6/CompilacionLocal.png)
+  ![CompilacionLocal](img/Paso6/CompilacionLocal.png)
