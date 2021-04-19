@@ -7,9 +7,9 @@ Trabajo practico 0 - Taller I
 
 - a) Captura de pantalla de la ejecucion del aplicativo
 
-  ​	![Pasp0Ejecucion](Imagenes Informe/Paso0/Pasp0Ejecucion.png)
+  ​	![Pasp0Ejecucion](img/Paso0/Pasp0Ejecucion.png)
 
-  ![Paso0Valgrind](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso0/Paso0Valgrind.png)
+  ![Paso0Valgrind](img/Paso0/Paso0Valgrind.png)
 
   
 
@@ -29,13 +29,13 @@ Trabajo practico 0 - Taller I
 
   ​	Si en el struct tengo campos que tienen distinto tipo de dato (uno mas largo que los demas) el resultado no sera igual ya que el compilador "rellena" el espacio faltante para que todos los campos sean igual de largos y asi evitar problemas de alineacion.
 
-  ![Sizeofprograma](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso0/Sizeofprograma.png)
+  ![Sizeofprograma](img/Paso0/Sizeofprograma.png)
 
   ​	Tenemos un struct con dos campos, x e y, donde x es un int e y es un short int. La longitud en bytes del int es 4 y del short int es 2, sin embargo el sizeof() sobre el strcut indica 8bytes pero en la suma de los elemtos indica 6bytes. Debajo se adjunta imagen del "relleno" que hace el compilador y a eso se debe que el sizeof() del struct retorne 8bytes.
 
-  ![RetornoProgramaSizeof](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso0/RetornoProgramaSizeof.png)
+  ![RetornoProgramaSizeof](img/Paso0/RetornoProgramaSizeof.png)
 
-  ![EjemploRelleno](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso0/EjemploRelleno.png)
+  ![EjemploRelleno](img/Paso0/EjemploRelleno.png)
 
 - e) **Investigar la existencia de los archivos estándar: STDIN, STDOUT, STDERR. Explicar brevemente su uso y cómo redirigirlos en caso de ser necesario (caracteres > y <) y como conectar la salida estándar de un proceso a la entrada estándar de otro con un pipe (carácter | ).**
 
@@ -56,7 +56,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - a) **Errores de estilo**
 
-  <img src="/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso1/ErroresLinter.png" alt="ErroresLinter" style="zoom:150%;" />
+  <img src="img/Paso1/ErroresLinter.png" alt="ErroresLinter" style="zoom:150%;" />
 
   Como vemos, el linter nos indica cada error de estilo encontrando y en que linea de codigo sucede. 
 
@@ -83,7 +83,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - b) **Errores de generacion del ejecutable**
 
-  ![ErroresCompilacion](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso1/ErroresCompilacion.png)
+  ![ErroresCompilacion](img/Paso1/ErroresCompilacion.png)
 
   Todos los errores son errores de compilacion ya que se esta compilando con el flag -c el cual indica que se debe precompilar y compilar pero no linkear, descripcion de los errores:
 
@@ -108,7 +108,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - b) **Captura de pantalla indicando la correcta ejecución de verificación de normas de programación.**
 
-  ![linter](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso2/linter.png)
+  ![linter](img/Paso2/linter.png)
 
 - c) **Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.**
 
