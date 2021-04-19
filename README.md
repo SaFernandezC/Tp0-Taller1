@@ -145,6 +145,47 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - c) **Captura de pantalla del resultado de ejecución con Valgrind de la prueba ‘Long Filename’. Describir los errores reportados por Valgrind.**
 
+  ![NombreLargoValgrind](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso4/NombreLargoValgrind.png)
+
+  En el caso de un input file con un nombre largo vemos que no hay perdidas de memoria ya que el programa corta su ejecucion en la linea 13 del main debido a un buffer overflow. El buffer overflow se genera debido a que la variable filepath tiene memoria reservada para 30 caracteres y se intentan guardar mas de 30 cuando se quiere copiar el contenido de argv[1] en dicha variable en el memcpy.
+
 - d) **¿Podría solucionarse este error utilizando la función strncpy? ¿Qué hubiera ocurrido con la ejecución de la prueba?**
 
 - e) **Explicar de qué se trata un segmentation fault y un buffer overflow.**
+
+  Un `segmentation fault` ocurre cuando el programa intenta acceder a memoria que no le pertenece, a memoria alocada en un area restringida para el programa. Cuando esto ocurre el programa corta su ejecucion.
+
+  Un `buffer overflow` se da cuando un programa no controla correctamente la cantidad de datos que copia en un area reservada de memora (buffer), el buffer tiene pre-reservada cierta cantidad de bytes y cuando se excede esta cantidad el programa comenzara a escribir en las posiciones adyacentes al bloque reservado, pisando el contenido que estaba almacenado previamente en dichas posiciones.
+
+
+
+## Paso 5
+
+- a) **Describa en breves palabras las correcciones realizadas respecto de la versión anterior.**
+
+  ​	En el archivo `paso5_main.c` se reemplaza la funcion `memcpy` por la funcion `strncpy` y tambien se agrega un if para verificar si cerrar el archivo. En `paso5_wordcounter.c` cambia la forma en la que se declaran los caracteres que delimitan las palabras. 
+
+- b) **Describa el motivo por el que fallan las prueba ‘Invalid File’ y ‘Single Word’. ¿Qué información entrega SERCOM para identificar el error? Realice una captura de pantalla.**
+
+  La informacion que brinda SERCOM para indentificar que hay errores es que el retorno del programa no coincide con la salida esperada que deberia tener.
+
+  ![Punto5b](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/Punto5b.png)
+
+  En el caso de `single_word` el error se da ya que el archivo tiene una sola palabra y no finaliza con ninguno de los caracteres especiales que delimitan el fin de la misma, eso genera que nunca se le sume uno a la cantidad de palabras leidas y retorna 0.
+
+  En el caso de `invalid_file`
+
+- c) **Captura de pantalla de la ejecución del comando hexdump. ¿Cuál es el último carácter del archivo input_single_word.txt?**
+
+  ![](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/ArchivoBinario.png)
+
+  Como se puede apreciar en la imagen el ultimo caracter del archivo `input_single_word.txt` es una letra `d`.
+
+- d)  **Captura de pantalla con el resultado de la ejecución con gdb. Explique brevemente los comandos utilizados en gdb. ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++;?**
+
+  ![](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb1.png)
+
+  ![gdb2](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb2.png)
+
+  ![gdb3](/home/santiago/Escritorio/Fiuba/Taller I/Tp0/Imagenes Informe/Paso5/gdb3.png)
+

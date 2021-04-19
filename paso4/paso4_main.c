@@ -10,7 +10,8 @@ int main(int argc, char* argv[]) {
     FILE* input;
     if (argc > 1) {
         char filepath[30];
-        memcpy(filepath, argv[1], strlen(argv[1]) + 1);
+        /*memcpy(filepath, argv[1], strlen(argv[1]) + 1); */
+        strncpy(filepath, argv[1], 30);
         input = fopen(filepath, "r");
     } else {
         input = stdin;
