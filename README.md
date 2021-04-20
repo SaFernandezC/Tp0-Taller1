@@ -13,9 +13,9 @@ El presente trabajo consta de seguir una serie de pasos con el fin de familiariz
 
 - a) **Captura de pantalla de la ejecucion del aplicativo**
 
-  ​	![Pasp0Ejecucion](img/Paso0/Pasp0Ejecucion.png)
+  ​	![Pasp0Ejecucion](img/Paso0/img0_0.png)
 
-  ![Paso0Valgrind](img/Paso0/Paso0Valgrind.png)
+  ![Paso0Valgrind](img/Paso0/img0_1.png)
 
   
 
@@ -35,21 +35,29 @@ El presente trabajo consta de seguir una serie de pasos con el fin de familiariz
 
   ​	Si en el struct tengo campos que tienen distinto tipo de dato (uno mas largo que los demas) el resultado no sera igual ya que el compilador "rellena" el espacio faltante para que todos los campos sean igual de largos y asi evitar problemas de alineacion.
 
-  ![Sizeofprograma](img/Paso0/Sizeofprograma.png)
+  ![Sizeofprograma](img/Paso0/img0_2.png)
 
   ​	Tenemos un struct con dos campos, x e y, donde x es un int e y es un short int. La longitud en bytes del int es 4 y del short int es 2, sin embargo el sizeof() sobre el strcut indica 8bytes pero en la suma de los elemtos indica 6bytes. Debajo se adjunta imagen del "relleno" que hace el compilador y a eso se debe que el sizeof() del struct retorne 8bytes.
 
-  ![RetornoProgramaSizeof](img/Paso0/RetornoProgramaSizeof.png)
+  ![RetornoProgramaSizeof](img/Paso0/img0_3.png)
 
-  ![EjemploRelleno](img/Paso0/EjemploRelleno.png)
+  ![EjemploRelleno](img/Paso0/img0_4.png)
 
 - e) **Investigar la existencia de los archivos estándar: STDIN, STDOUT, STDERR. Explicar brevemente su uso y cómo redirigirlos en caso de ser necesario (caracteres > y <) y como conectar la salida estándar de un proceso a la entrada estándar de otro con un pipe (carácter | ).**
 
   - STDIN: Entrada estandar, consiste en los datos que son enviados al programa. El descriptor asociado al stdin es el 0.
   - STDOUT: Salida estandar, es la manera por la cual el programa devuelve los datos luego de su ejecucion. El descriptor de archivo que le corresponde es el 1.
-  - STDERR: Error estandar, es el canal por el cual se envia un mensaje de error en caso de que la ejecucion falle
+  - STDERR: Error estandar, es el canal por el cual se envia un mensaje de error en caso de que la ejecucion falle. Su descriptor es 2.
 
+Los caracteres < y > sirven como operadores para redirigir entrada y salida estandar. 
 
+**Ejemplos:**  Guardar la salida estandar en archivo.txt --> `programa > archivo.txt`
+
+​					Redirigir errores --> `programa 2>errores.txt` (el 2 es el descriptor de stdeer)
+
+​					Redirigir la salida estandar y errores al mismo archivo --> `programa > salida.txt 2>&1`
+
+​					Usar un archivo como entrada --> `programa <entrada.txt`
 
 
 ​	La salida estandar de un programa se puede conectar con la entrada estandar de otro progama utilizando un pipe. El segundo proceso lee directamente los resultados del proceso anterior. La forma de utilizarlo es la siguiente `$ prog1 | prog2 `. Se ejecutara el prog1 y su salida estandar se conecta con la entrada estandar del prog2.
@@ -62,7 +70,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - a) **Errores de estilo**
 
-  <img src="img/Paso1/ErroresLinter.png" alt="ErroresLinter" style="zoom:150%;" />
+  <img src="img/Paso1/img1_0.png" alt="ErroresLinter" style="zoom:150%;" />
 
   Como vemos, el linter nos indica cada error de estilo encontrando y en que linea de codigo sucede. 
 
@@ -89,7 +97,7 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - b) **Errores de generacion del ejecutable**
 
-  ![ErroresCompilacion](img/Paso1/ErroresCompilacion.png)
+  ![ErroresCompilacion](img/Paso1/img1_0.png)
 
   Todos los errores son errores de compilacion ya que se esta compilando con el flag -c el cual indica que se debe precompilar y compilar pero no linkear, descripcion de los errores:
 
@@ -114,11 +122,11 @@ Luego de realizar la entrega del paso1 en el sercom vemos que la tarea finaliza 
 
 - b) **Captura de pantalla indicando la correcta ejecución de verificación de normas de programación.**
 
-  ![linter](img/Paso2/linter.png)
+  ![linter](img/Paso2/img2_0.png)
 
 - c) **Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.**
 
-  ![ejecutable](img/Paso2/ejecutable.png)
+  ![ejecutable](img/Paso2/img2_1.png)
 
 Todos los errores se tratan de errores en la compilacion (con el flag -c nunca se linkea, luego de compilar se frena el proceso). Los errores se producen ya que falta  incluir la biblioteca estandar (se puede incluir en el paso2_wordcounter.h o en el paso2_wordcounter.c y hacer el include de paso2_wordcounter.h luego de declarar las demas bibliotcas) que es la que contiene el tipo de dato size_t (sercom recomienda stddef pero con la estandar alcanza). Luego, tampoco puede resolver el malloc ya que no esta incluida la biblioteca <stdlib> la cual lo contiene, esto genera que no se pueda compilar ya que el compilador no puede verificar que esta funcion existe (no hay una definicion explicita). 
 
@@ -134,7 +142,7 @@ Todos los errores se tratan de errores en la compilacion (con el flag -c nunca s
 
 - b) **Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.** 
 
-![Compilacion](img/Paso3/Compilacion.png)
+![Compilacion](img/Paso3/img3_0.png)
 
 En este caso el error proviene del linker. El compilador tiene todo lo necesario para generar el codigo objeto pero para armar el ejecutable el linker debe indicar la posicion de cada funcion ya que de lo contrario el ejecutable no podra invocar a una funcion que no sabe donde se ecuentra. La funcion wordscounter_destroy esta declarada pero no esta implementada en ninguna parte.
 
@@ -150,9 +158,9 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - b) **Captura de pantalla del resultado de ejecución con Valgrind de la prueba ‘TDA’. Describir los errores reportados por Valgrind.**
 
-  ![ValgrindTda1](img/Paso4/ValgrindTda1.png)
+  ![ValgrindTda1](img/Paso4/img4_0.png)
 
-  ![ValgrindTda2](img/Paso4/ValgrindTda2.png)
+  ![ValgrindTda2](img/Paso4/img4_1.png)
 
   Con el resultado de ejecucion de Valgrind vemos que al final la misma quedaron abiertos 5 archivos, siendo uno de ellos el `input_tda.txt` que es el que indicamos por parametros a la hora de ejecutar (los demas corresponden al stdin, stdout, stderr, y el log de valgrind, los cuales se pueden "ignorar").
 
@@ -160,11 +168,13 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - c) **Captura de pantalla del resultado de ejecución con Valgrind de la prueba ‘Long Filename’. Describir los errores reportados por Valgrind.**
 
-  ![NombreLargoValgrind](img/Paso4/NombreLargoValgrind.png)
+  ![NombreLargoValgrind](img/Paso4/img4_2.png)
 
   En el caso de un input file con un nombre largo vemos que no hay perdidas de memoria ya que el programa corta su ejecucion en la linea 13 del main debido a un buffer overflow. El buffer overflow se genera debido a que la variable filepath tiene memoria reservada para 30 caracteres y se intentan guardar mas de 30 cuando se quiere copiar el contenido de argv[1] en dicha variable en el memcpy.
 
 - d) **¿Podría solucionarse este error utilizando la función strncpy? ¿Qué hubiera ocurrido con la ejecución de la prueba?**
+
+  Usando la funcion `strncpy(filepath, argv[1], 30);` se puede evitar el problema del buffer overflow ya que solo se copiaran en filepath los primeros 30 caracteres de argv[1]. El problema que se tendra en este caso es que no se encontrara ningun archivo correspondiente al nombre de filepath y el programa terminara devolviendo error. 
 
 - e) **Explicar de qué se trata un segmentation fault y un buffer overflow.**
 
@@ -182,27 +192,27 @@ En este caso el error proviene del linker. El compilador tiene todo lo necesario
 
 - b) **Describa el motivo por el que fallan las prueba ‘Invalid File’ y ‘Single Word’. ¿Qué información entrega SERCOM para identificar el error? Realice una captura de pantalla.**
 
-  La informacion que brinda SERCOM para indentificar que hay errores es que el retorno del programa no coincide con la salida esperada que deberia tener.
+  La informacion que brinda SERCOM para indentificar que hay errores es que el return code del programa o el stdout no coincide con la salida esperada que deberia tener.
 
-  ![Punto5b](img/Paso5/Punto5b.png)
+  ![Punto5b](img/Paso5/img5_0.png)
 
-  En el caso de `single_word` el error se da ya que el archivo tiene una sola palabra y no finaliza con ninguno de los caracteres especiales que delimitan el fin de la misma, eso genera que nunca se le sume uno a la cantidad de palabras leidas y retorna 0.
+  En el caso de `single_word` el error se da ya que el archivo tiene una sola palabra y no finaliza con ninguno de los caracteres especiales que delimitan el fin de la misma, eso genera que nunca se le sume uno a la cantidad de palabras leidas y en el stdout queda un cero (el valor de `size_t words`) cuando deberia ser un 1 si todo fuese correcto. En este caso el stdout no coincide con lo esperado pero si el return code.
 
-  En el caso de `invalid_file`
+  En el caso de `invalid_file` al no poder abrir el archivo (no encuentra ninguno con el nombre que le pasan por parametro) retorna ERROR, en el archivo `paso5_main.c ` ERROR esta definido como -1 cuando deberia ser 1 (por lo indicado en la consigna del tp) y por eso devuelve el caracter equivalente 255 en el return code. En este caso el return code no coincide con lo esperado pero si el stdout.
 
 - c) **Captura de pantalla de la ejecución del comando hexdump. ¿Cuál es el último carácter del archivo input_single_word.txt?**
 
-  ![](img/Paso5/ArchivoBinario.png)
+  ![](img/Paso5/img5_1.png)
 
   Como se puede apreciar en la imagen el ultimo caracter del archivo `input_single_word.txt` es una letra `d`y no un caracter especial.
 
 - d)  **Captura de pantalla con el resultado de la ejecución con gdb. Explique brevemente los comandos utilizados en gdb. ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++;?**
 
-  ![](img/Paso5/gdb1.png)
+  ![](img/Paso5/img5_2.png)
 
-  ![gdb2](img/Paso5/gdb2.png)
+  ![gdb2](img/Paso5/img5_3.png)
 
-  ![gdb3](img/Paso5/gdb3.png)
+  ![gdb3](img/Paso5/img5_4.png)
 
 El gdb no se detuvo en la linea 45 por lo explicado en b) y c), como la palabra no finaliza con alguno de los caracteres especiales el `if(strchr(delim_words, c) != NULL)` siempre da false y provoca que el programa nunca entre a la linea 45. Como resultado de ello, nunca se incrementa el contador de palabras y el retorno del programa es cero.
 
@@ -224,6 +234,10 @@ El gdb no se detuvo en la linea 45 por lo explicado en b) y c), como la palabra 
 
 - b) **Captura de pantalla mostrando todas las entregas realizadas, tanto exitosas como fallidas.**
 
+  ![historial1](img/Paso6/img6_0.png)
+
+  ![historial2](img/Paso6/img6_1.png)
+
 - c) **Captura de pantalla mostrando la ejecución de la prueba ‘Single Word’ de forma local con las distintas variantes indicadas.**
 
-  ![CompilacionLocal](img/Paso6/CompilacionLocal.png)
+  ![CompilacionLocal](img/Paso6/img6_2.png)
